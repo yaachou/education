@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block content %}
+
+
+<div class="v-settings">
+    <div class="ui two column grid ">
+        <div class="four wide column">
+            {% include "base/left_nav.html" %}
+        </div>
+        <div class="twelve wide column">
+            <div class="v-settings-content">
+
+                <form class="ui form" novalidate method="post" action="../../../parents/alter_info/"
+                      enctype="multipart/form-data" role="form">
+                    {% csrf_token %}
+                        
+                    <p>用户名:  {{ user1.username }}</p>                  
+                    <p>邮箱:  {{ user1.email }}   <input type="text" name="email"></p>
+                    <p>手机:  {{ user1.mobile }}  <input type="text" name="phone"></p>
+                    <p>姓名:  {{ user2.name }}    <input type="text" name="name"></p>
+                    <p>孩子姓名:{{ user2.child_name }}<input type="text" name="child_name"></p>
+                    <p>孩子年龄:{{ user2.child_age }} <input type="text" name="child_age"></p>
+                    <p>孩子性别:{{ user2.child_sex }} <select name="child_sex">
+                                    <option value="M">男</option>
+                                    <option value="F">女</option>
+                                </select></p>
+
+                    <button class="ui primary button" type="submit">保存</button>
+
+                    {% include "base/form_errors.html" %}
+                    {% include "base/form_messages.html" %}
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+$(function(){
+
+    $('.ui .dropdown').dropdown();
+
+    $("#id_avatar").change(function(){
+        $("#file_is_choose").show()
+    });
+
+});
+
+</script>
+<script src="{% static 'js/left_nav.js' %}"></script>
+{% endblock javascript %}

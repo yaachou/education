@@ -1,0 +1,13 @@
+<h1>增加公告</h1>
+<p>登陆用户：{{ username }}</p>
+<form action="/agency/addnotice/" method="post">
+    {{new}}
+    <input type="submit">
+    {% if notices %}
+        {% for item in notices %}
+        公告:
+         {{item.notice_title}}
+        {% endfor %}
+    {% endif %}
+</form>
+

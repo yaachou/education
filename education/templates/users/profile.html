@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block content %}
+
+
+<div class="v-settings">
+    <div class="ui two column grid ">
+        <div class="four wide column">
+            {% include "base/left_nav.html" %}
+        </div>
+        <div class="twelve wide column">
+            <div class="v-settings-content">
+
+                <form class="ui form" novalidate method="post" action="../../../parents/alter_info/"
+                      enctype="multipart/form-data" role="form">
+                    {% csrf_token %}
+                    
+                    <p>
+                        {% for item in info_list %}
+                            {{ item }}
+                            {% empty %}
+                                抱歉，未找到所需的结果！
+                        {% endfor %}
+                    </p>
+                        
+                    <p>username:  {{ username }}</p>
+                    
+                    <p>邮箱:     <input type="text" name="email"></p>
+                    <p>手机:     <input type="text" name="phone"></p>
+                    <p>姓名:      <input type="text" name="name"></p>
+                    <p>孩子姓名:<input type="text" name="child_name"></p>
+                    <p>孩子年龄: <input type="text" name="child_age"></p>
+                    <p>孩子性别: <select name="child_sex" form="carform">
+                                    <option value="M">男</option>
+                                    <option value="F">女</option>
+                                </select></p>
+
+                    <button class="ui primary button" type="submit">保存</button>
+
+                    {% include "base/form_errors.html" %}
+                    {% include "base/form_messages.html" %}
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+$(function(){
+
+    $('.ui .dropdown').dropdown();
+
+    $("#id_avatar").change(function(){
+        $("#file_is_choose").show()
+    });
+
+});
+
+</script>
+<script src="{% static 'js/left_nav.js' %}"></script>
+{% endblock javascript %}
+

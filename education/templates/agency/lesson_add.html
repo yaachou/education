@@ -1,0 +1,71 @@
+{% extends 'agency/base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block content %}
+
+<div class="ui grid">
+    <div class="row">
+        <h3>提交课程</h3>
+    </div>
+    <div class="ui divider"></div>
+    <div class="row">
+        <div class="v-form-wrap">
+
+            <form class="ui form" novalidate method="post"
+                  enctype="multipart/form-data" role="form">
+                {% csrf_token %}
+                <div class="field">
+                    <label>课程名</label>
+                    {{ form.cname }}
+                </div>
+                <div class="field">
+                    <label>课程描述</label>
+                    {{ form.ccontend }}
+                </div>
+                <div class="field">
+                    <label>价格</label>
+                    {{ form.cprice }}
+                </div>
+                <div class="field">
+                    <label>适教年龄</label>
+                    {{ form.caim_age }}
+                </div>
+                <div class="field">
+                    <label>起始时间</label>
+                    {{ form.cstarttime}}
+                </div>
+                <div class="field">
+                    <label>结束时间</label>
+                    {{ form.cendtime }}
+                </div>
+                <div class="field">
+                    <label>课程领域</label>
+                    {{ form.cfield }}
+                </div>
+                <div class="field">
+                    <label>任课教师</label>
+                    {{ form.cteacher }}
+                </div>
+                <div class="field">
+                    <label>上课地点</label>
+                    {{ form.carea }}
+                </div>
+                <div class="field">
+                    <label>课程作业</label>
+                    {{ form.chomework }}
+                </div>
+                <button class="ui primary button" type="submit">添加</button>
+
+                {% include "base/form_errors.html" %}
+                {% include "base/form_messages.html" %}
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>修改用户信息</title>
+</head>
+<body>
+<table align="center">
+	<tr><td><h3><a>搜索结果</a></h3></td></tr>
+</table>
+<br>
+<table align="center" border="1" width="400" cellpadding="7">
+    <tr bgcolor="#00FF00">
+		<th><h3>课程</h3></th>
+		<th><h3>价格</h3></th>
+		<th><h3>领域</h3></th>
+		<th><h3>地点</h3></th>
+	</td>
+	{% for item in show_list %}
+	<tr>
+		<td align="center"><h3><a href="{% url 'agency:lesson_detail' item.pk %}">{{ item.cname }}</a></h3></td>
+		<td align="center"><h5>{{ item.cprice }}</h5></td>
+		{% if item.cfield == 'M' %}
+			<td align="center"><h5>数学</h5></td>
+		{% endif %}
+		{% if item.cfield == 'C' %}
+			<td align="center"><h5>语文</h5></td>
+		{% endif %}
+		{% if item.cfield == 'E' %}
+			<td align="center"><h5>英语</h5></td>
+		{% endif %}
+		{% if item.cfield == 'O' %}
+			<td align="center"><h5>其他</h5></td>
+		{% endif %}
+		<td align="center"><h5>{{ item.carea }}</h5></td>
+	</tr>
+	{% empty %}
+		抱歉，未找到所需的结果！
+{% endfor %}
+</table>
+
+</body>
+</html>
+{% endblock content %}

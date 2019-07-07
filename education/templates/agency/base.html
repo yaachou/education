@@ -1,0 +1,57 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/semantic.custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}"/>
+    <title>个人教师</title>
+</head>
+<body>
+<div class="ui inverted huge borderless fixed fluid menu">
+    <a class="header item" href="{% url 'agency:teacher_index' %}">
+        <img src="{% static 'img/logo.png' %}" id="logo">在线教育
+    </a>
+    <div class="right menu">
+        <a class="item" href="{% url 'home' %}" target="_blank">首页</a>
+        <a class="item" href="{% url 'agency:teacher_index' %}">个人信息</a>
+        <a class="item">{{ username }}</a>
+        <a class="item" href="{% url 'users:logout' %}">退出</a>
+    </div>
+</div>
+<div class="ui grid">
+    <div class="row">
+        <div class="column" id="sidebar">
+            <div class="ui secondary vertical fluid menu">
+                <a class="item" href="{% url 'agency:teacher_index' %}" id="index">总览</a>
+                <div class="ui divider"></div>
+                <a class="item" href="{% url 'agency:notice_list' %}" id="notice_list">我的公告</a>
+                <a class="item" href="{% url 'agency:notice_add' %}" id="notice_list">添加公告</a>
+                <div class="ui divider"></div>
+                <a class="item" href="{% url 'agency:apply_list' %}" id="apply_list">申请列表</a>
+                <div class="ui divider"></div>
+                <a class="item" href="{% url 'agency:lesson_list' %}" id="lesson_list">课程列表</a>
+                <a class="item" href="{% url 'agency:lesson_add' %}" id="lesson_add">添加课程</a>
+                <div class="ui divider"></div>
+            </div>
+        </div>
+    </div>
+    <div class="column" id="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</div>
+</div>
+
+{% block modal %}
+{% endblock modal %}
+<script src="https://cdn.staticfile.org/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="{% static 'js/agency/admin_nav.js' %}"></script>
+{% block javascript %}
+{% endblock javascript %}
+
+
+</body>
+</html>

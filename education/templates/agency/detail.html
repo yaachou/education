@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>课程详情页</h1>
+<div class="input-group">
+       课程名： {{lesson.cname}}</br>
+       课程简介:{{lesson.ccontend}}<br>
+       价格： {{lesson.cprice}}</br>
+       领域： {% if lesson.cfield == 'M' %}
+                     数学
+              {% endif %}
+              {% if lesson.cfield == 'C' %}
+                     语文
+              {% endif %}
+              {% if lesson.cfield == 'E' %}
+                     英语
+              {% endif %}
+              {% if lesson.cfield == 'O' %}
+                     其他
+              {% endif %}
+              <br>
+       地点： {{lesson.carea}}</br>
+       <button><a href="{% url 'parents:add_to_cart' %}?lesson_id={{ lesson.pk }}">加入购物车</button>
+</div>
+{% endblock content %}
+ 

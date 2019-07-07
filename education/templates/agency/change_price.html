@@ -1,0 +1,42 @@
+{% extends 'agency/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="v-settings">
+    <div class="ui two column grid ">
+        <div class="twelve wide column">
+            <div class="v-settings-content">
+                <form novalidate class="ui form" method="post">
+                  {% csrf_token %}
+                 
+                    <div class="sixteen wide inline field v-form-field">
+                        <label>原价</label>
+                         {{id}}
+                    </div>
+                    <div class="sixteen wide inline field v-form-field">
+                        <label>现价</label>
+                        {{ form.new_price}}
+                    </div>
+                  <button class="ui primary button" type="submit">保存</button>
+
+                    {% include "base/form_errors.html" %}
+                    {% include "base/form_messages.html" %}
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript">
+$('.ui .dropdown').dropdown();
+</script>
+<script src="{% static 'js/left_nav.js' %}"></script>
+{% endblock javascript %}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>购物车</title>
+</head>
+<body>
+    <table align="center">
+        <tr><td><h3><a>我的购物车</a></h3></td></tr>
+    </table>
+    <br>
+	<table align="center" border="1" width="400" cellpadding="7">
+        <tr bgcolor="#00FF00">
+            <th><h3>课程</h3></th>
+            <th><h3>数量</h3></th>
+            <th><h3>小计</h3></th>
+            <th><h3>操作</h3></th>
+        </tr>
+        {% for item in cart %}
+        <tr>
+            <td align="center"><a href="{% url 'agency:lesson_detail' item.pk %}"><h5>{{ item.product.cname }}</h5></a></td>
+            <td align="center"></a><h5>{{ item.quantity }}</h5></td>
+            <td align="center"><h5>{{ item.total_price }}</h5></td>
+            <td align="center"><h5><a href="{% url 'parents:remove_from_cart' %}?lesson_id={{ item.product.lesson_id }}"">移除</a></h5></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="4"><em>共计： <a>{{ cart.summary }}</a> 元</em></td>
+        </tr>
+    </table>
+    <br>
+    <table align="center">
+        <tr bgcolor="#FF4500"><td><h3><a href="{% url 'parents:pay' %}?cost={{ cart.summary }}"><input type=button style="background:red" value="付款"></a></h3></td></tr>
+    </table>   
+</body>
+</html>
+{% endblock content %}
